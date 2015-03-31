@@ -30,19 +30,21 @@ function emitPath(path, event) {
   
 function drawPath(data){
     console.log('data passed to drawPath', data);
-    if(!data.segments){
-      var newSegments = data[data.length-1].segments.map(function(object){
-        return new Point(object[1], object[2]);
-      });
-    } else {
-      var newSegments = data.segments.map(function(segment){
-        return new Point(segment[1], segment[2]);
-      });
-    }
+    var newSegments = data.segments.map(function(segment){
+      return new Point(segment[1], segment[2]);
+    });
     var anotherPath = new Path(newSegments);
-    anotherPath.strokeWidth = data.strokeWidth || data[data.length-1].strokeWidth;
-    anotherPath.strokeColor = data.strokeColor || data[data.length-1].strokeColor;
+    anotherPath.strokeWidth = data.strokeWidth;
+    anotherPath.strokeColor = data.strokeColor;
     view.draw();
+}
+
+
+function drawAllExistingPaths(data){
+  data.forEach(function(item){
+    console.log('each item inside drawall function', item);
+    drawPath(item);
+  });
 }
 ///////////////////////////
 ////  Socket Listeners ////
@@ -58,7 +60,7 @@ socket.on('color', function(data){
   color = data.color;
   if(data.clients > 1 && data.paths){
     console.log('more than 1 client', data.paths);
-    drawPath(data.paths);
+    drawAllExistingPaths(data.paths);
     // data.paths.forEach(function(path){
     //   drawPath(path);
     // });
