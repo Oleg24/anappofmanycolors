@@ -1,5 +1,5 @@
 var DrawingConfigs = function(){
-  this.color;
+  
 }
 
 DrawingConfigs.prototype.generateRandomColor = function () {
@@ -9,7 +9,7 @@ DrawingConfigs.prototype.generateRandomColor = function () {
         color += letters[Math.floor(Math.random() * 16)];
     }
     this.color = color;
-    return this.color;
+    return color;
   }
 
 module.exports = new DrawingConfigs();
