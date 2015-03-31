@@ -3,3 +3,8 @@
   margin: 0 auto;
   text-align: center;
 }
+
+#canvas{
+  border: black solid 5px;
+  /*opacity: 10;*/
+}
