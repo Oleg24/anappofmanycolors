@@ -1,11 +1,11 @@
-// var mouseDowns = 0;
 var myPath;
 var anotherPath;
+var color; 
 
 function onMouseDown(event) {
   // mouseDowns++;
   myPath = new Path();
-  myPath.strokeColor ='black';
+  myPath.strokeColor = color;
   myPath.strokeWidth = 10;
 }
 
@@ -25,21 +25,28 @@ function emitPath(path, event) {
         point : event.point
     };
     socket.emit('drawPath', data, sessionId );
-    console.log('this is the data we are emitting', data);
+    // console.log('this is the data we are emitting', data);
 }
   
 function drawPath(data){
   var newSegments = data.segments.map(function(segment){
     return new Point(segment[1], segment[2]);
   });
-  console.log(newSegments);
   var anotherPath = new Path(newSegments);
   anotherPath.strokeWidth = data.strokeWidth;
-  anotherPath.strokeColor = 'black';
+  anotherPath.strokeColor = data.strokeColor;
   view.draw();
 }
+///////////////////////////
+////  Socket Listeners ////
+///////////////////////////
 
-socket.on( 'drawPath', function(data) {
-    console.log( 'this is the data we are recieving:', data );
+socket.on('drawPath', function(data) {
+    console.log( 'we are receiving data');
     drawPath(data);
-})
+});
+
+socket.on('color', function(data){
+  console.log('my color from draw.js', data);
+  color = data;
+});

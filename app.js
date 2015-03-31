@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 var port = process.env.PORT || 5050;
-var drawConfigs = require('./serverFiles/drawConfigs.js');
+var draw = require('./serverFiles/drawConfigs.js');
 var numberOfClients = 0;
 var clientColors = {};
 app.use('/', express.static(__dirname + '/public'));
@@ -11,22 +11,8 @@ app.use('/', express.static(__dirname + '/public'));
 io.on('connection', function(client){
   numberOfClients++;
 
-  // TODO: refactor this findColor code into the drawConfigs
-  function findColor(client){
-    var found = false;
-    for(var key in clientColors){
-      if(client.id === key){
-        found = true;
-        return clientColors[key];
-      }
-    }
-    if(!found){
-      var temp = drawConfigs.generateRandomColor();
-      return clientColors[client.id] = temp;      
-    }
-  };
-  var color = findColor(client);
-  console.log('a client has connected', numberOfClients);
+  var color = draw.generateRandomColor();
+  console.log('A client has connected.  Total number of clients: ', numberOfClients);
   console.log('their color is', color);
   console.log(client.id);
   client.emit("color", color);

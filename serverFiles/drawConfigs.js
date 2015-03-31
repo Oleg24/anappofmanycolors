@@ -13,3 +13,20 @@ DrawingConfigs.prototype.generateRandomColor = function () {
   }
 
 module.exports = new DrawingConfigs();
+
+
+
+// // ignore this stuff for now 
+// function findColor(client){
+//   var found = false;
+//   for(var key in clientColors){
+//     if(client.id === key){
+//       found = true;
+//       return clientColors[key];
+//     }
+//   }
+//   if(!found){
+//     var temp = drawConfigs.generateRandomColor();
+//     return clientColors[client.id] = temp;      
+//   }
+// };
