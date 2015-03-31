@@ -16,10 +16,15 @@
   <script type="text/paperscript" src="scripts/draw.js" canvas="canvas"></script>
   <script>
     var socket = io.connect('http://localhost:5050');
-    console.log('socket', socket);
+    // console.log('socket', socket);
     socket.on('color', function(data){
       console.log('my color', data);
-    })
+    });
+    // socket.on('drawPath', function(data) {
+    //     console.log('drawPath event recieved:', data );
+    //     hello();
+    //     drawPath(data);
+    // });
   </script>
 </head>
 <body class="container">

@@ -11,10 +11,9 @@ app.use('/', express.static(__dirname + '/public'));
 io.on('connection', function(client){
   numberOfClients++;
 
-  // TODO: refactor this findColor code to the drawConfigs
+  // TODO: refactor this findColor code into the drawConfigs
   function findColor(client){
     var found = false;
-    console.log('executing')
     for(var key in clientColors){
       if(client.id === key){
         found = true;
@@ -23,19 +22,19 @@ io.on('connection', function(client){
     }
     if(!found){
       var temp = drawConfigs.generateRandomColor();
-      console.log('temporary', temp);
       return clientColors[client.id] = temp;      
     }
   };
   var color = findColor(client);
-  // var color = drawConfigs.generateRandomColor();
   console.log('a client has connected', numberOfClients);
   console.log('their color is', color);
   console.log(client.id);
-
   client.emit("color", color);
-  client.on('drawPath', function(data){
-    console.log(data);
+
+  client.on('drawPath', function(data, session){
+    console.log('user in session', session);
+    console.log('is drawing this', data);
+    client.broadcast.emit('drawPath', data );
   });
 
 
