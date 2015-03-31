@@ -5,7 +5,7 @@ var io = require('socket.io').listen(server);
 var port = process.env.PORT || 5050;
 var draw = require('./serverFiles/drawHelpers.js');
 var numberOfClients = 0;
-var paths;
+var paths = [];
 app.use('/', express.static(__dirname + '/public'));
 
 io.on('connection', function(client){
@@ -25,7 +25,7 @@ io.on('connection', function(client){
   client.on('drawPath', function(data, session){
     console.log('user in session', session);
     console.log('is drawing this', data);
-    if(!paths){
+    if(!paths.length){
       paths = new Array();
     }
     paths.push(data);
@@ -37,9 +37,10 @@ io.on('connection', function(client){
   client.on('disconnect', function(){
     numberOfClients--;
     console.log('a client has disconnected, number of clients remaining', numberOfClients);
-    if(numberOfClients === 0){
+    if(numberOfClients === 0 && paths){
       console.log('no clients, reseting paths');
-      paths.pop();
+      paths = [];
+      console.log('paths after clearing', paths);
     }
   })
 });

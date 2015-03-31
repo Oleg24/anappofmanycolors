@@ -61,9 +61,5 @@ socket.on('color', function(data){
   if(data.clients > 1 && data.paths){
     console.log('more than 1 client', data.paths);
     drawAllExistingPaths(data.paths);
-    // data.paths.forEach(function(path){
-    //   drawPath(path);
-    // });
-    
   }
 });
