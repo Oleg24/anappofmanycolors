@@ -1,4 +1,5 @@
 var mouseDowns = 0;
+
 // Create a new path once, when the script is executed:
 var myPath = new Path();
 myPath.strokeColor = 'black';
@@ -18,8 +19,7 @@ function onMouseDown(event) {
   // }
 }
 
-
-function emitPath( x, y) {
+function emitPath(x, y) {
 
     // Each Socket.IO connection has a unique session id
     var sessionId = socket.id;
