@@ -33,7 +33,6 @@ function drawPath(data){
   view.draw();
 }
 
-
 function drawAllExistingPaths(data){
   data.forEach(function(item){
     drawPath(item);

@@ -12,7 +12,3 @@ DrawingConfigs.prototype.generateRandomColor = function(){
 };
 
 module.exports = new DrawingConfigs();
-
-
-// TODO: Refactor to export only this one function
-// Will need to refactor a few lines in app.js as well
