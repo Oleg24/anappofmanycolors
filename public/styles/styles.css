@@ -1,9 +1,15 @@
 .center{
-  width: 1000px;
+  /*width: 1000px;*/
   margin: 0 auto;
   text-align: center;
 }
 
 #canvas{
   border: black solid 5px;
+}
+
+.info{
+  background-color: gray;
+  border: black solid 2px;
+  margin-right: -30px;
 }

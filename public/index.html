@@ -14,13 +14,14 @@
   <link rel="stylesheet" href="styles/styles.css">
   <script type="text/paperscript" src="scripts/draw.js" canvas="canvas"></script>
   <script>
-    var socket = io.connect('http://localhost:5050');
+    // var socket = io.connect('http://localhost:5050'); // development connection
+    var socket = io.connect('http://anappofmanycolors.azurewebsites.net/'); 
   </script>
 </head>
 <body class="container">
-  <div class="center twelve columns">
-    <h1>Draw With Friends</h1>  
-    <canvas id="canvas" height="500" width="1000" style="background-color:pink"></canvas>
+    <h1>Draw With Friends</h1>
+  <div class="row">
+    <canvas id="canvas" width="900" height="450" style="background-color:pink"></canvas>
   </div>
 </body>
 </html>
