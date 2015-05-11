@@ -30,14 +30,16 @@ function drawPath(data){
   var anotherPath = new Path(newSegments);
   anotherPath.strokeWidth = data.strokeWidth;
   anotherPath.strokeColor = data.strokeColor;
-  view.draw();
+  setTimeout(function(){
+    view.draw();
+  }, 0);
 }
 
 function drawAllExistingPaths(data){
   data.forEach(function(item){
     setTimeout(function(){
       drawPath(item);
-    }, 0)
+    }, 0);
   });
 }
 ///////////////////////////
