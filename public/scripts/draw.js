@@ -35,7 +35,7 @@ function drawPath(data){
 
 function drawAllExistingPaths(data){
   data.forEach(function(item){
-    drawPath(item);
+    setTimeout(drawPath(item), 0)
   });
 }
 ///////////////////////////
